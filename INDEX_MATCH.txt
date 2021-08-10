@@ -1,5 +1,4 @@
-# (1) Meet two conditions: Cohort, Tank
-# (2) Find the Closest date to G10(given date)
+# Find the Closest date to G10(given date) with Two conditions: Cohort, Tank
 # Column A: Cohort
 # Column B: Tank
 # Column C: Date 
@@ -13,3 +12,8 @@
 
 =INDEX(G:G,MATCH(1,(G8=B:B)*(I11=C:C),0))
 
+# Find frequency value using MATCH/INDEX with One conditions: Tank
+# Column B: Tank
+# Column G: Frequency
+
+=INDEX(G:G,MATCH(G8,B:B,0),2) 
