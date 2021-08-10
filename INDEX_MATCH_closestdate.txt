@@ -1,0 +1,15 @@
+# (1) Meet two conditions: Cohort, Tank
+# (2) Find the Closest date to G10(given date)
+# Column A: Cohort
+# Column B: Tank
+# Column C: Date 
+
+=MAX(IF(OR(B:B=G8,A:A=G6),IF(C:C<G10,C:C)))
+
+# Find frequency value using MATCH/INDEX with Two conditions: Tank, Date
+# Column B: Tank
+# Column C: Date
+# Column G: Frequency
+
+=INDEX(G:G,MATCH(1,(G8=B:B)*(I11=C:C),0))
+
