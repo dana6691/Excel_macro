@@ -1,0 +1,43 @@
+Private Sub Add_Click()
+    Dim wsCopy2 As Worksheet
+    Dim wsDest3 As Worksheet
+    
+    'Set variables for copy and destination sheets
+    Set wsCopy2 = Worksheets("FORM_nursery")
+    Set wsDest3 = Worksheets("Data_nursery")
+    
+    'Find first blank row in the destination range based on data in column A
+    DestLastRow1 = wsDest3.Cells(wsDest3.Rows.Count, "A").End(xlUp).Offset(1).Row
+    
+    'Copy range to clipboard and Transpose + Paste values
+    wsCopy2.Range("G6,G8,G10,G12").Copy
+    wsDest3.Range("A" & DestLastRow1).PasteSpecial Paste:=xlPasteValues, Transpose:=True
+    wsCopy2.Range("J4,J6,J8,J12,J13").Copy
+    wsDest3.Range("E" & DestLastRow1).PasteSpecial Paste:=xlPasteValues, Transpose:=True
+    wsDest3.Range("J" & DestLastRow1) = wsCopy2.Range("G4").Value
+    
+    'Button enabled
+    add.Enabled = False
+    delete.Enabled = True
+    clear.Enabled = True
+End Sub
+
+Private Sub Clear_Click()
+    Dim wsCopy2 As Worksheet
+    Set wsCopy2 = Worksheets("FORM_nursery")
+    wsCopy2.Range("G6,G8,G10,G12").ClearContents
+    wsCopy2.Range("J4,J6,J8,J10").ClearContents
+    clear.Enabled = False
+    add.Enabled = True
+    delete.Enabled = False
+End Sub
+
+Private Sub Delete_Click()
+    Set wsDest3 = Worksheets("Data_nursery")
+    Dim rLastRow As Range
+    Set rLastRow = wsDest3.Cells(Rows.Count, "C").End(xlUp)
+    'Delete last 3 rows:
+    rLastRow.Offset(0).Resize(1).EntireRow.Delete
+    delete.Enabled = False
+    add.Enabled = True
+End Sub
